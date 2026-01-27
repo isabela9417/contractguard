@@ -1,73 +1,125 @@
-# Welcome to your Lovable project
+# ContractGuard
 
-## Project info
+ContractGuard is a TypeScript-based toolkit for auditing, monitoring, and interacting with smart contracts and contract-related workflows. This repository contains the application code, developer utilities, and configuration for running and developing ContractGuard.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+> NOTE: Replace the sections marked TODO or examples with values from your codebase (scripts, environment variables, endpoints, CLI names, etc.).
 
-## How can I edit this code?
+## Key features
+- TypeScript-first codebase
+- Utilities for contract analysis and verification
+- Monitoring and alerting hooks (configurable)
+- Local development and testing workflows
 
-There are several ways of editing your application.
+## Language composition
+- TypeScript (primary)
+- PLpgSQL, CSS, and other small assets
 
-**Use Lovable**
+## Quick start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Prerequisites
+- Node.js 18+ (or the version used by the project)
+- npm, yarn, or pnpm
+- (Optional) Docker & Docker Compose (for database or dependent services)
 
-Changes made via Lovable will be committed automatically to this repo.
+Clone the repo:
+```bash
+git clone https://github.com/isabela9417/contractguard.git
+cd contractguard
+```
 
-**Use your preferred IDE**
+Install dependencies (example with npm):
+```bash
+npm install
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Available npm scripts (example — confirm or add these to your package.json):
+- `npm run dev` — start in development mode (watch)
+- `npm run build` — compile TypeScript to JavaScript
+- `npm start` — run the compiled application
+- `npm test` — run the test suite
+- `npm run lint` — run linters / formatters
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Start development server (example):
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build and run production (example):
+```bash
+npm run build
+npm start
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Configuration
 
-**Use GitHub Codespaces**
+This repository expects configuration via environment variables and/or a `.env` file. Common variables:
+- `NODE_ENV` — development | production
+- `PORT` — application port (default: 3000)
+- `DATABASE_URL` — connection string for the database (if used)
+- `RPC_URL` — Ethereum JSON-RPC endpoint (or other chain RPC)
+- `ALERT_WEBHOOK` — optional webhook URL for alerts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Create a `.env` file from the example template (if provided):
+```bash
+cp .env.example .env
+# edit .env to provide values
+```
 
-## What technologies are used for this project?
+## Project structure (suggested — adapt to your repo)
+- `src/` — TypeScript source files
+- `tests/` — unit and integration tests
+- `scripts/` — helper scripts (migration, seeding)
+- `config/` — configuration management
+- `docs/` — additional documentation and guides
 
-This project is built with:
+## Testing
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Run tests:
+```bash
+npm test
+```
 
-## How can I deploy this project?
+Add coverage (example with nyc / coverage tool):
+```bash
+npm run test:coverage
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Linting & formatting
 
-## Can I connect a custom domain to my Lovable project?
+Run linter and formatter:
+```bash
+npm run lint
+npm run format
+```
 
-Yes, you can!
+## Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Contributions are welcome. Typical workflow:
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/your-feature`
+3. Install dependencies and run tests locally
+4. Open a pull request with a clear description and test coverage
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Please follow these guidelines:
+- Write tests for new features and bug fixes
+- Keep changes small and focused
+- Follow the project's coding style and linters
+
+## Security
+
+- Report vulnerabilities to the maintainers or via GitHub Security Advisories.
+- Keep secrets out of the repository (use environment variables or secret management).
+
+## Troubleshooting
+
+- If build fails, verify Node version and installed packages.
+- For runtime errors, check logs and ensure environment variables are set.
+- Review tests and linters for failing checks.
+
+## License
+
+Specify the license used by the project (e.g., MIT). Update `LICENSE` file accordingly.
+
+## Getting help
+
+Open an issue in the repository for bugs or questions, or contact the maintainers.
