@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { FileText, Download, ChevronDown, Shield, AlertTriangle, CheckCircle, FileDown } from 'lucide-react';
+import { FileText, Shield, AlertTriangle, CheckCircle, FileDown, FileType } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -18,10 +18,8 @@ interface AnalysisResultsProps {
 }
 
 export function AnalysisResults({ analysis, onNewAnalysis }: AnalysisResultsProps) {
-  const [exportOpen, setExportOpen] = useState(false);
   const [playingClauseId, setPlayingClauseId] = useState<string | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const highRiskClauses = analysis.flaggedClauses.filter(c => c.riskLevel === 'high');
   const mediumRiskClauses = analysis.flaggedClauses.filter(c => c.riskLevel === 'medium');
@@ -49,14 +47,12 @@ export function AnalysisResults({ analysis, onNewAnalysis }: AnalysisResultsProp
     }
   };
 
-  const handleExport = (format: 'pdf' | 'docx') => {
-    setExportOpen(false);
-    
-    if (format === 'pdf') {
-      generatePDFReport(analysis, { includeNextSteps: true });
-    } else {
-      downloadAsWord(analysis);
-    }
+  const handleExportPDF = () => {
+    generatePDFReport(analysis, { includeNextSteps: true });
+  };
+
+  const handleExportDocx = () => {
+    downloadAsWord(analysis);
   };
 
   // Generate summary text for voice accessibility
@@ -89,44 +85,22 @@ export function AnalysisResults({ analysis, onNewAnalysis }: AnalysisResultsProp
                 Analyze Another
               </Button>
               
-              <div className="relative" ref={dropdownRef}>
-                <Button 
-                  className="gap-2 gradient-primary"
-                  onClick={() => setExportOpen(!exportOpen)}
-                >
-                  <Download className="h-4 w-4" />
-                  Export Analysis
-                  <ChevronDown className={cn(
-                    'h-4 w-4 transition-transform',
-                    exportOpen && 'rotate-180'
-                  )} />
-                </Button>
-                
-                {exportOpen && (
-                  <div className="absolute right-0 mt-2 w-52 rounded-lg border border-border bg-card shadow-xl z-[100] animate-scale-in">
-                    <button
-                      className="flex w-full items-center gap-3 px-4 py-3 text-sm bg-card hover:bg-muted transition-colors rounded-t-lg"
-                      onClick={() => handleExport('pdf')}
-                    >
-                      <FileDown className="h-4 w-4 text-destructive" />
-                      <div className="text-left">
-                        <p className="font-medium">Export as PDF</p>
-                        <p className="text-xs text-muted-foreground">Full formatted report</p>
-                      </div>
-                    </button>
-                    <button
-                      className="flex w-full items-center gap-3 px-4 py-3 text-sm bg-card hover:bg-muted transition-colors rounded-b-lg border-t border-border"
-                      onClick={() => handleExport('docx')}
-                    >
-                      <FileText className="h-4 w-4 text-primary" />
-                      <div className="text-left">
-                        <p className="font-medium">Export as DOCX</p>
-                        <p className="text-xs text-muted-foreground">Editable document</p>
-                      </div>
-                    </button>
-                  </div>
-                )}
-              </div>
+              <Button 
+                variant="outline"
+                size="icon"
+                onClick={handleExportPDF}
+                title="Export as PDF"
+              >
+                <FileDown className="h-4 w-4" />
+              </Button>
+              <Button 
+                variant="outline"
+                size="icon"
+                onClick={handleExportDocx}
+                title="Export as DOCX"
+              >
+                <FileType className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
