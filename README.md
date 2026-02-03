@@ -30,7 +30,6 @@ cd contractguard
 Install dependencies (example with npm):
 ```bash
 npm install
-```
 
 Available npm scripts (example — confirm or add these to your package.json):
 - `npm run dev` — start in development mode (watch)
