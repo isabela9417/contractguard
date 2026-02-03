@@ -1,6 +1,6 @@
 # ContractGuard
 
-ContractGuard is a TypeScript-based toolkit for auditing, monitoring, and interacting with smart contracts and contract-related workflows. This repository contains the application code, developer utilities, and configuration for running and developing ContractGuard.
+ContractGuard is a TypeScript toolkit designed for auditing, monitoring, and interacting with smart contracts and their associated workflows. This repository provides the core application code, developer utilities, and configuration needed to run and extend ContractGuard.
 
 > NOTE: Replace the sections marked TODO or examples with values from your codebase (scripts, environment variables, endpoints, CLI names, etc.).
 
